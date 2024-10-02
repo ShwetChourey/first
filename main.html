@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <style>
+      /* styles.css */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 1em;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 0.5em;
+        margin-bottom: 1em;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 0.5em;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 1em;
+      }
+
+      #searchResults {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .result {
+        border: 1px solid #ddd;
+        padding: 1em;
+        margin: 1em;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #ddd;
+        width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <button id="searchButton">Search</button>
+      <div id="searchResults">
+        <!-- Search results will be displayed here -->
+      </div>
+    </main>
+    <script>
+      // script.js
+      document.getElementById("searchButton").addEventListener("click", () => {
+        const searchInput = document.getElementById("searchInput");
+        const searchTerm = searchInput.value.toLowerCase();
+        const searchResults = document.getElementById("searchResults");
+
+        // Replace this with your actual data source
+        const data = [
+          { type: "food", name: "Pizza" },
+          { type: "restaurant", name: "Pizza Palace" },
+          { type: "cloud kitchen", name: "Cloud Kitchen Pizza Co." },
+          { type: "food", name: "Burger" },
+          { type: "restaurant", name: "Burger Bistro" },
+          { type: "cloud kitchen", name: "Cloud Kitchen Burger Co." },
+        ];
+
+        searchResults.innerHTML = "";
+        const filteredData = data.filter((item) =>
+          item.name.toLowerCase().includes(searchTerm)
+        );
+
+        filteredData.forEach((item) => {
+          const result = document.createElement("div");
+          result.className = "result";
+          result.innerHTML = `<strong>${item.type}:</strong> ${item.name}`;
+          searchResults.appendChild(result);
+        });
+      });
+    </script>
+  </body>
+</html>
